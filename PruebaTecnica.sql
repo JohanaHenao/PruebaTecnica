@@ -1,5 +1,5 @@
---CREATE DATABASE Prueba
-use Prueba
+CREATE DATABASE PruebaTecnica
+--use PruebaTecnica
 
 --1. Creación de modelo relacional
 CREATE TABLE Paciente 
@@ -50,16 +50,16 @@ CREATE TABLE Visita
  ,FOREIGN KEY (DiagnosticoID) REFERENCES Diagnostico(DiagnosticoID)
 )
 
-INSERT INTO Diagnostico (Diagnostico) VALUES (Fiebre)
-INSERT INTO Diagnostico (Diagnostico) VALUES (Hipertension)
-INSERT INTO Diagnostico (Diagnostico) VALUES (Diabetes)
+INSERT INTO Diagnostico (Diagnostico) VALUES ('Fiebre')
+INSERT INTO Diagnostico (Diagnostico) VALUES ('Hipertension')
+INSERT INTO Diagnostico (Diagnostico) VALUES ('Diabetes')
 
 
-INSERT INTO Especialidad(Nombre) VALUES (Cardiología)
-INSERT INTO Especialidad(Nombre) VALUES (Geriatria)
-INSERT INTO Especialidad(Nombre) VALUES (Pediatría)
-INSERT INTO Especialidad(Nombre) VALUES (Psiquiatría)
-INSERT INTO Especialidad(Nombre) VALUES (Neurología)
+INSERT INTO Especialidad(Nombre) VALUES ('Cardiología')
+INSERT INTO Especialidad(Nombre) VALUES ('Geriatria')
+INSERT INTO Especialidad(Nombre) VALUES ('Pediatría')
+INSERT INTO Especialidad(Nombre) VALUES ('Psiquiatría')
+INSERT INTO Especialidad(Nombre) VALUES ('Neurología')
 
 INSERT INTO Medico (Nombre, Apellido, Email, EspecialidadID) VALUES('Fernando', 'Castro',	'fernandocastro@gmail.com',	1)
 INSERT INTO Medico (Nombre, Apellido, Email, EspecialidadID) VALUES('Aldemar',	'Guzmán',	'aldemarguzman@gmai.com',	3)
@@ -67,12 +67,13 @@ INSERT INTO Medico (Nombre, Apellido, Email, EspecialidadID) VALUES('Catalina',	
 INSERT INTO Medico (Nombre, Apellido, Email, EspecialidadID) VALUES('Alexandra',	'Aguirre',	'alexandraaguirre@gmail.com',	3)
 
 
-INSERT INTO Paciente (PacienteID, Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Sandra',	'Restrepo',	'Calle 25 F No. 43-18',	'5542684',	'sandrarestrepo@gmail.com')
-INSERT INTO Paciente (PacienteID, Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Javier',	'Vanegas',	'Carrera 48 No 26-17',	'8453216',	'javiervanegas@gmail.com')
-INSERT INTO Paciente (PacienteID, Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Dary',	'Salinas',	'Avenida 32 No 57-19',	'6321476',	'darysalinas@gmail.com')
+INSERT INTO Paciente (Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Sandra',	'Restrepo',	'Calle 25 F No. 43-18',	'5542684',	'sandrarestrepo@gmail.com')
+INSERT INTO Paciente ( Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Javier',	'Vanegas',	'Carrera 48 No 26-17',	'8453216',	'javiervanegas@gmail.com')
+INSERT INTO Paciente ( Nombre, Apellido, Direccion, Telefono, Email) VALUES ('Dary',	'Salinas',	'Avenida 32 No 57-19',	'6321476',	'darysalinas@gmail.com')
 
+go
 --2. Store Procedure
-alter PROCEDURE RegistroVisita 
+create PROCEDURE RegistroVisita 
 @PacienteID int
  ,@MedicoID int
  ,@FechaVisita date
@@ -91,10 +92,10 @@ alter PROCEDURE RegistroVisita
 	 END
  end
 
-
+ go
 
 --3. Trigger
-ALTER TRIGGER ActualizaFechaUltimaVisita
+create TRIGGER ActualizaFechaUltimaVisita
  ON Visita AFTER INSERT
  AS
 BEGIN
